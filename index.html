@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Hibari - UNOFFICIAL FAN SITE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="songs.js"></script>
+
+<style>
+:root {
+      --bg-color: #121a24;
+      --card-bg: #192332;
+      --primary-pink: #CD3764;
+      --pink-border: rgba(205, 55, 100, 0.6);
+      --text-white: #e2e8f0;
+      --text-muted: #a0aec0;
+      --font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+    html, body {
+      width: 100%; max-width: 100vw; overflow-x: hidden;
+      background-color: var(--bg-color); color: var(--text-white);
+      font-family: var(--font-family); min-height: 100vh;
+    }
+    body { padding-top: 75px; padding-bottom: 180px; padding-left: 12px; padding-right: 12px; }
+
+    .top-fixed-bar {
+      position: fixed; top: 0; left: 0; width: 100%; height: 60px;
+      background: rgba(18, 26, 36, 0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--pink-border); display: flex;
+      justify-content: space-between; align-items: center; padding: 0 20px;
+      z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .top-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem; font-style: italic; font-weight: bold; color: #fff;
+      text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, transparent 15%, var(--primary-pink) 15%, var(--primary-pink) 85%, transparent 85%);
+      padding: 0 8px; line-height: 1.2; transition: opacity 0.2s; flex-shrink: 0;
+    }
+    .top-brand:hover { opacity: 0.85; }
+    .top-nav { display: flex; align-items: center; gap: 12px; flex-wrap: nowrap; }
+   
+    .nav-link {
+      background: none; border: none; color: var(--text-white);
+      font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif; font-size: 0.85rem; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+      transition: color 0.2s; padding: 6px 10px; border-radius: 8px;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--primary-pink); background: rgba(230, 57, 115, 0.1); }
+    .nav-icon { width: 18px; height: 18px; fill: currentColor; }
+
+    .outer-frame {
+      border: 1px solid var(--pink-border); padding: 16px 20px;
+      max-width: 1350px; width: 100%; margin: 0 auto;
+    }
+
+    .custom-logo-header {
+      text-align: center;
+      margin: 2px auto 14px auto;
+      position: relative;
+      padding: 0;
+      max-width: 720px;
+      width: 100%;
+    }
+    .logo-wrapper {
+      display: block;
+      position: relative;
+      width: 100%;
+    }
+
+    .animated-main-logo {
+      width: 100%;
+      height: 360px;
+      background-image: url('imagesmainlogo.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: block;
+      animation: logoNeonPulse 3.5s ease-in-out infinite alternate;
+      -webkit-touch-callout: none;
+      user-select: none;
+    }
+    @keyframes logoNeonPulse {
+      0% {
+        filter: drop-shadow(0 0 3px rgba(168, 85, 247, 0.4))
+                drop-shadow(0 0 10px rgba(230, 57, 115, 0.4));
+        transform: scale(1);
+      }
+      50% {
+        filter: drop-shadow(0 0 12px rgba(189, 52, 254, 0.9))
+                drop-shadow(0 0 22px rgba(230, 57, 115, 0.75))
+                brightness(1.05);
+        transform: scale(1.006);
+      }
+      100% {
+        filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.5))
+                drop-shadow(0 0 12px rgba(230, 57, 115, 0.5));
+        transform: scale(1);
+      }
+    }
+
+    .section-heading {
+      font-size: 1.2rem; font-weight: bold; color: #ff758c;
+      margin: 15px 0 8px 0; text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .ornament-divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: var(--primary-pink);
+      margin: 14px 0;
+      opacity: 0.85;
+    }
+    .ornament-divider::before,
+    .ornament-divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid var(--pink-border);
+    }
+    .ornament-divider::before {
+      margin-right: 12px;
+    }
+    .ornament-divider::after {
+      margin-left: 12px;
+    }
+    .ornament-divider span {
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+    }
+
+    .mobile-only-divider {
+      display: none;
+    }
+
+    .controls-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+   
+    .filter-label { font-size: 0.75rem; color: #ff758c; letter-spacing: 1px; margin-bottom: 4px; font-weight: bold; }
+   
+.categories { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+    .category-btn {
+      background: rgba(230, 57, 115, 0.15); border: 1px solid var(--pink-border);
+      color: var(--text-white); padding: 5px 12px; border-radius: 16px;
+      cursor: pointer; font-family: 'Noto Sans JP', sans-serif; font-size: 0.8rem;
+      transition: 0.2s; user-select: none; white-space: nowrap;
+    }
+    .category-btn.active { background: var(--primary-pink); box-shadow: 0 0 8px rgba(230, 57, 115, 0.5); }
+
+    .sub-filter-btn {
+      background: rgba(230, 57, 115, 0.15); border: 1px solid var(--pink-border);
+      color:  var(--text-white); padding: 5px 12px; border-radius: 16px;
+      cursor: pointer; font-family: 'Noto Sans JP', sans-serif; font-size: 0.8rem;
+      transition: 0.2s; user-select: none; white-space: nowrap;
+    }
+    .sub-filter-btn.active { background: var(--primary-pink); box-shadow: 0 0 8px rgba(230, 57, 115, 0.5); }
+
+    .count {
+      font-size: 0.7rem;
+      opacity: 0.8;
+      font-weight: normal;
+      margin-left: 2px;
+    }
+
+    .fav-notice {
+      text-align: center; font-size: 0.85rem; color: #ff758c; margin-top: 4px; display: none;
+    }
+    .start-play-btn {
+      background: var(--primary-pink); color: #fff; border: none;
+      padding: 8px 20px; border-radius: 20px; font-family: var(--font-family);
+      font-weight: bold; cursor: pointer; margin-top: 8px; box-shadow: 0 0 10px rgba(230,57,115,0.4);
+      display: inline-flex; align-items: center; gap: 6px; transition: 0.2s;
+    }
+    .start-play-btn:active { transform: scale(0.95); }
+
+    .search-sort-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+    .search-input, .sort-select {
+      background: rgba(0,0,0,0.3); border: 1px solid var(--pink-border); color: #fff;
+      padding: 8px 12px; border-radius: 12px; outline: none; font-family: var(--font-family); font-size: 0.85rem;
+    }
+    .search-input { width: 220px; }
+
+    .song-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+    .song-card {
+      background: var(--card-bg); border: 1px solid #ff758c; border-radius: 8px; padding: 10px;
+      position: relative; display: flex; flex-direction: column; transition: 0.2s;
+    }
+    .song-card.playing { border-color: #fff; box-shadow: 0 0 15px rgba(255,255,255,0.3); background: #2a3b52; }
+    .is-fav-mode .song-card { cursor: grab; }
+    .is-fav-mode .song-card:active { cursor: grabbing; }
+    .sortable-ghost { opacity: 0.4; border: 2px dashed var(--primary-pink); }
+
+    .yt-btn.is-disabled {
+      background-color: #2a2a2a !important;
+      color: #666 !important;
+      cursor: default !important;
+      pointer-events: none !important;
+    }
+
+    .fav-btn {
+      position: absolute; top: 14px; right: 14px; background: rgba(230, 57, 115, 0.15);
+      border: 1px solid #ff758c; color: #fff; border-radius: 50%; width: 32px; height: 32px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10;
+    }
+    .fav-btn.active { background: var(--primary-pink); border-color: #ff3366; }
+
+    .thumb-frame { width: 100%; aspect-ratio: 16/9; border-radius: 6px; overflow: hidden; margin-bottom: 8px; display: block; }
+    .thumb-frame img { width: 100%; height: 100%; object-fit: cover; }
+   
+    .card-content { display: flex; flex-direction: column; flex-grow: 1; min-width: 0; }
+    .song-title { font-weight: bold; font-size: 14px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 25px; }
+    .song-artist { font-size: 12px; color: #a0aec0; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .singers-container { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; align-items: center; min-height: 28px; }
+   
+    .singer-icon {
+      width: 28px; height: 28px; border-radius: 50%; object-fit: cover;
+      background: #000; flex-shrink: 0; border: 2px solid var(--primary-pink);
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 6px;
+      margin-bottom: 0px; 
+    }
+
+    .tag {
+      font-size: 0.65rem;
+      background-color: var(--primary-pink, #e84393);
+      color: #ffffff;
+      padding: 1px 6px;
+      border-radius: 9999px;
+      display: inline-block;
+    }
+   
+    .yt-btn {
+      margin-top: 10px;
+      border: 1px solid #ff758c; background: rgba(230, 57, 115, 0.15); color: #fff;
+      text-decoration: none; padding: 6px 0; border-radius: 15px; font-size: 12px;
+      transition: 0.2s; cursor: pointer; text-align: center; display: block;
+    }
+    .yt-btn:hover { background: var(--primary-pink); }
+
+    .player-bar {
+      position: fixed; bottom: 0; left: 0; width: 100%;
+      background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(16px);
+      border-top: 1px solid var(--primary-pink); padding: 10px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 1000; transform: translateY(100%); transition: transform 0.3s ease;
+      box-shadow: 0 -8px 25px rgba(0,0,0,0.7);
+    }
+    .player-bar.visible { transform: translateY(0); }
+   
+    .player-info { flex: 1; min-width: 0; padding-right: 15px; display: flex; align-items: center; gap: 12px; }
+    .player-thumb { width: 44px; height: 44px; border-radius: 6px; object-fit: cover; flex-shrink: 0; border: 1px solid var(--pink-border); }
+    .player-text { min-width: 0; }
+    .player-title { font-size: 0.95rem; font-weight: bold; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .player-artist { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+
+    .player-controls { display: flex; gap: 16px; align-items: center; justify-content: center; flex: 2; }
+    .control-btn {
+      background: none; border: none; color: var(--text-muted);
+      cursor: pointer; transition: all 0.2s ease; padding: 6px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; width: 36px; height: 36px;
+    }
+    .control-btn svg { width: 20px; height: 20px; fill: currentColor; }
+    .control-btn:hover { color: #fff; }
+    .control-btn.active { color: var(--primary-pink); filter: drop-shadow(0 0 6px rgba(230, 57, 115, 0.8)); }
+   
+    .play-pause-btn {
+      width: 44px; height: 44px; background: rgba(230, 57, 115, 0.2);
+      border: 1px solid var(--primary-pink); color: #fff;
+    }
+    .play-pause-btn svg { width: 22px; height: 22px; }
+    .play-pause-btn:hover { background: var(--primary-pink); color: #fff; box-shadow: 0 0 12px rgba(230, 57, 115, 0.6); }
+
+    .player-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
+   
+    .close-btn {
+      background: none; border: none; color: var(--text-muted); cursor: pointer;
+      padding: 6px; display: inline-flex; align-items: center; justify-content: center;
+      transition: 0.2s;
+    }
+    .close-btn svg { width: 20px; height: 20px; fill: currentColor; }
+    .close-btn:hover { color: #fff; }
+
+    .about-section {
+      max-width: 1350px; margin: 30px auto 0 auto;
+      background: var(--bg-color);
+      border: 1px solid var(--pink-border);
+      border-radius: 0px;
+      padding: 24px;
+    }
+    .about-section-body { font-size: 0.8rem; color: var(--text-muted); line-height: 1.8; margin-top: 10px; }
+   
+    .about-note {
+      font-size: 0.72rem;
+      color: #718096;
+      margin-top: 4px;
+    }
+
+    .yt-container {
+      position: fixed; bottom: 85px; right: 20px; width: 220px; height: 124px;
+      border-radius: 8px; overflow: hidden; border: 1px solid var(--primary-pink);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 999;
+      background: #000; display: none;
+    }
+    .yt-container.visible { display: block; }
+    #ytplayer { width: 100%; height: 100%; }
+
+    .singer-modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .singer-modal-content {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 12px;
+      width: 85%;
+      max-width: 300px;
+      color: #fff;
+      position: relative;
+border-color: var(--singer-border-color, inherit) !important;
+    }
+    .singer-modal-close {
+      position: absolute;
+      top: 10px; right: 12px;
+      background: none; border: none;
+      color: #fff; font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .singer-modal-title {
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+      text-align: center;
+      color: #ff758c;
+      font-weight: bold;
+    }
+    .singer-modal-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    /* スマホ向けレイアウト調整 */
+ /* スマホ向けレイアウト調整 */
+@media (max-width: 600px) {
+  .custom-logo-header {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    margin-bottom: 0 !important;
+  }
+  .logo-wrapper {
+    margin: 0 !important;
+  }
+  .animated-main-logo {
+    height: 170px !important;
+    width: 100% !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+  }
+
+  .top-fixed-bar {
+    padding: 8px 14px;
+    height: 64px;
+    font-size: 12px;
+  }
+
+  .top-brand {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* スマホ用メニューボタンのスタイル */
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(230, 57, 115, 0.2);
+    border: 1px solid var(--primary-pink, #ff69b4);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-family: var(--font-family);
+  }
+
+  /* アコーディオン式メニューのスタイル */
+  .mobile-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 15px;
+    background: #1e1e2f;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    padding: 12px;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    min-width: 200px;
+  }
+  .mobile-dropdown-menu.is-open {
+    display: flex;
+  }
+  .mobile-dropdown-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 8px 10px;
+    text-align: left;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  .mobile-dropdown-menu a:hover {
+    background: rgba(230, 57, 115, 0.2);
+  }
+  .mobile-dropdown-menu .nav-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  /* PC用の通常ナビゲーションはスマホでは非表示 */
+  .desktop-nav-links {
+    display: none !important;
+  }
+
+  /* ==========================================
+     ① 検索バナーの長さをスマホ画面の横幅に合わせる
+     ========================================== */
+  input[type="text"],
+  input[type="search"],
+  .search-input,
+  .search-box,
+  #search-input,
+  .search-bar {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* ==========================================
+     ② 並び替えバナーを右配置＆サイズを小さくする
+     ========================================== */
+  select,
+  .sort-select,
+  .sort-dropdown,
+  .sort-box,
+  #sort-select {
+    display: block !important;
+    width: auto !important;
+    max-width: 65% !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    font-size: 11px !important;
+    padding: 4px 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  .song-title, 
+  .song-artist {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 32px;
+  }
+
+  /* ==========================================
+     ③ 楽曲カードの余白削減と縦サイズ縮小
+     ========================================== */
+  .song-card {
+    display: grid;
+    grid-template-columns: 95px 1fr;
+    grid-template-rows: auto auto auto auto;
+    padding: 6px 10px !important; /* 上下パディングを詰めて縮小 */
+    margin-bottom: 6px !important;  /* 上下の隙間を揃えてすっきりさせる */
+    column-gap: 12px;
+    row-gap: 2px;
+  }
+
+  .thumb-frame {
+    grid-column: 1;
+    grid-row: 1;
+    width: 95px;
+    height: 53px;
+    margin-bottom: 0;
+  }
+
+  .yt-btn {
+    grid-column: 1;
+    grid-row: 2;
+    width: 95px;
+    height: 23px;
+    padding: 0;
+    font-size: 11px;
+    border-radius: 12px;
+    margin-top: 2px;
+    margin-bottom: 0 !important; /* 下部の余白をなくす */
+    line-height: 21px;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    gap: 1px;
+    padding-right: 0;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .song-title {
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.2;
+  }
+  .song-artist {
+    font-size: 11.5px;
+    color: #a0aec0;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .singers-container {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+    margin-top: 2px;
+    margin-bottom: 0 !important;
+    gap: 4px;
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+    margin-bottom: 2px !important; /* タグ下の余白を極限までなくす */
+  }
+
+  .tag-badge {
+    font-size: 0.58rem !important;
+    padding: 0.1rem 0.35rem !important;
+    border-radius: 8px !important;
+  }
+
+  .singers-container.is-stacked {
+    flex-wrap: nowrap !important;
+    overflow: visible !important;
+  }
+  .singers-container.is-stacked .singer-icon {
+    width: 24px !important;
+    height: 24px !important;
+    margin-right: -7px !important;
+    border: 2px solid var(--card-bg);
+  }
+
+  .singer-more-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.55rem;
+    font-weight: bold;
+    margin-left: 6px;
+    border: 2px solid #2A4B71 !important;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .categories,
+  .category-container, 
+  .filter-container {
+    display: flex;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding-bottom: 4px;
+  }
+
+  .categories button,
+  .category-container button, 
+  .filter-container button,
+  .category-btn,
+  .tag-filter-btn {
+    flex-shrink: 0;
+  }
+
+  .fav-btn { top: 6px; right: 8px; width: 26px; height: 26px; font-size: 0.85rem; }
+  
+  .player-bar {
+    flex-direction: column; gap: 8px; padding: 10px 15px; position: fixed;
+  }
+  .player-info { text-align: left; padding-right: 25px; width: 100%; }
+  .player-controls { gap: 12px; }
+  
+  .player-right {
+    position: absolute; top: 6px; right: 8px; display: flex; justify-content: flex-end; align-items: center;
+  }
+  .close-btn { padding: 2px; }
+  .close-btn svg { width: 16px; height: 16px; }
+  
+  .yt-container { bottom: 170px; right: 10px; width: 150px; height: 85px; }
+}
+
+/* PC表示（601px以上）のときの設定 */
+@media (min-width: 601px) {
+  .mobile-menu-btn, .mobile-dropdown-menu {
+    display: none !important;
+  }
+}
+
+.singer-more-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: bold;
+  margin-left: -1px;
+  border: 2px solid #2A4B71;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+[id] {
+  scroll-margin-top: 80px; /* 画面上部の固定要素の高さに応じて必要に応じて数値を調整してください */
+}
+@media screen and (min-width: 769px) {
+  .mobile-search-btn {
+    display: none !important;
+  }
+}
+/* --- 歌唱アイコンの折り返し防止修正 --- */
+
+/* 歌唱アイコンのコンテナ（仮に .song-vocalists とします）に対する修正 */
+/* アイコンの数やサイズに応じて、最低限必要な幅（min-width）を指定してください */
+.singer.icon {
+  /* 例として、アイコン5-6個分が収まる程度の幅を確保します（環境に合わせて調整） */
+  min-width: 180px !important;
+  
+  /* 横幅が足りなくても折り返さない */
+  flex-wrap: nowrap !important;
+  
+  /* 必要に応じて、親要素の幅を超えて表示する（視覚的に一列を維持） */
+  overflow-x: visible !important;
+}
+
+/* 各アイコン画像のサイズ（必要に応じて微調整） */
+.singer.icon {
+  width: 30px !important;
+  height: 30px !important;
+  margin-right: -8px !important; /* アイコンを重ねる場合のマージン */
+}
+</style>
+</head>
+<body id="topPage">
+
+<div class="top-fixed-bar">
+  <a href="#topPage" class="top-brand">Studio Hibari</a>
+  
+<!-- PC用ナビゲーション（検索バーの文字サイズ調整・見切れ防止対応） -->
+<div class="top-nav desktop-nav-links" style="margin-left: auto; display: flex; align-items: center; justify-content: flex-end; gap: 20px;">
+  <div class="desktop-search-wrapper" style="position: relative; display: flex; align-items: center;">
+    <input type="text" id="searchInput" class="search-input" placeholder="例：ラルク / L'Arc〜en〜Ciel / 歌ってみた" oninput="renderSongs()" style="width: 235px; padding: 6px 10px 6px 32px; font-size: 0.78rem; background: var(--bg-card, #1a1a24); color: #fff; border: 1px solid var(--primary-pink); border-radius: 6px; outline: none; box-sizing: border-box;">
+    <svg style="position: absolute; left: 9px; width: 14px; height: 14px; fill: #fff; pointer-events: none;" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 14 11.99 9.5 14z"/></svg>
+  </div>
+  <a href="#musicLibraryHeading" class="nav-link">✦ MUSIC LIBRARY</a>
+  <a href="#aboutSection" class="nav-link">✦ ABOUT</a>
+  <a href="https://www.youtube.com/@WataraiHibari" target="_blank" class="nav-link" aria-label="YouTube">
+    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+  </a>
+  <a href="https://x.com/watarai_hibari" target="_blank" class="nav-link" aria-label="X (Twitter)">
+    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+  </a>
+</div>
+
+<!-- スマートフォン用メニュー・検索ボタン（左：白い虫眼鏡SVG、右：≡、サイズ・色統一） -->
+<div class="mobile-nav-left" style="display: flex; align-items: center; gap: 14px;">
+  <button class="mobile-search-btn" onclick="toggleMobileSearch(event)" style="background: none; border: none; cursor: pointer; padding: 0; line-height: 1; display: flex; align-items: center;" aria-label="検索">
+    <svg style="width: 20px; height: 20px; fill: #fff;" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 14 11.99 9.5 14z"/></svg>
+  </button>
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu(event)" style="font-size: 1.3rem; color: #fff; background: none; border: none; cursor: pointer; padding: 0; line-height: 1;">≡</button>
+</div>
+  <div class="mobile-dropdown-menu" id="mobileDropdownMenu">
+    <a href="#musicLibraryHeading" onclick="closeMobileMenu()">✦ MUSIC LIBRARY</a>
+    <a href="#aboutSection" onclick="closeMobileMenu()">✦ ABOUT</a>
+    <a href="https://www.youtube.com/@WataraiHibari" target="_blank" onclick="closeMobileMenu()">
+      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+    <a href="https://x.com/watarai_hibari" target="_blank" onclick="closeMobileMenu()">
+      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      X (Twitter)
+    </a>
+  </div>
+</div>
+
+<!-- 1. トップ画像 -->
+<header class="custom-logo-header">
+  <div class="logo-wrapper">
+    <div class="animated-main-logo" role="img" aria-label="トップ画像"></div>
+  </div>
+</header>
+
+<!-- 2. メインコンテンツ枠 -->
+<div class="outer-frame">
+  <div class="section-heading" id="musicLibraryHeading" style="margin-bottom: 4px;">✦ MUSIC LIBRARY</div>
+  <div class="ornament-divider">
+    <span>✦</span>
+  </div>
+
+  <div class="controls-container">
+    <div>
+      <div class="filter-label">✦ CATEGORY</div>
+      <div class="categories" id="categoryContainer">
+        <button class="category-btn active" data-tag="" onclick="toggleTag('')">すべて <span class="count">(0)</span></button>
+        <button class="category-btn" data-tag="歌ってみた" onclick="toggleTag('歌ってみた')">歌ってみた <span class="count">(0)</span></button>
+        <button class="category-btn" data-tag="歌枠" onclick="toggleTag('歌枠')">歌枠 <span class="count">(0)</span></button>
+        <button class="category-btn" data-tag="3D/ライブ" onclick="toggleTag('3D/ライブ')">3D/ライブ <span class="count">(0)</span></button>
+        <button class="category-btn" data-tag="オリジナル曲" onclick="toggleTag('オリジナル曲')">オリジナル曲 <span class="count">(0)</span></button>
+        <button class="category-btn" data-tag="その他" onclick="toggleTag('その他')">その他 <span class="count">(0)</span></button>
+        <button class="category-btn" data-tag="マイリスト" onclick="toggleTag('マイリスト')">マイリスト <span class="count">(0)</span></button>
+      </div>
+    </div>
+
+    <div class="ornament-divider">
+      <span>✦</span>
+    </div>
+
+    <div>
+      <div class="filter-label">✦ SUBCATEGORY & GROUP</div>
+      <div class="categories" id="subFilterContainer">
+        <button class="sub-filter-btn active" data-sub="" onclick="toggleSubFilter('')">指定なし <span class="count">(0)</span></button>
+        <button class="sub-filter-btn" data-sub="ソロ"onclick="toggleSubFilter('ソロ')">ソロ<span class="count">(0)</span></button>
+        <button class="sub-filter-btn" data-sub="コラボ" onclick="toggleSubFilter('コラボ')">コラボ <span class="count">(0)</span></button>
+        <button class="sub-filter-btn" data-sub="VOLTACTION" onclick="toggleSubFilter('VOLTACTION')">VOLTACTION <span class="count">(0)</span></button>
+        <button class="sub-filter-btn" data-sub="2時だとか/バンド" onclick="toggleSubFilter('2時だとか/バンド')">2時だとか/バンド <span class="count">(0)</span></button>
+        <button class="sub-filter-btn" data-sub="Shorts" onclick="toggleSubFilter('Shorts')">Shorts <span class="count">(0)</span></button>
+        <button class="sub-filter-btn" data-sub="Mix" onclick="toggleSubFilter('Mix')">Mix <span class="count">(0)</span></button>
+        <button class="sub-filter-btn" data-sub="コーラス/演奏" onclick="toggleSubFilter('コーラス/演奏')">コーラス/演奏 <span class="count">(0)</span></button>
+        <button class="sub-filter-btn" data-sub="再生リスト未収録" onclick="toggleSubFilter('再生リスト未収録')">再生リスト未収録 <span class="count">(0)</span></button>
+      </div>
+    </div>
+    
+
+    <div class="fav-notice" id="favNotice">
+      <div style="margin-bottom: 10px; text-align: center;">
+        <div style="font-weight: bold; font-size: 0.95rem; margin-bottom: 4px; color: var(--primary-pink, #ff69b4);">✦ マイリストの使い方 ✦</div>
+        <div style="font-size: 0.8rem; line-height: 1.5; opacity: 0.9;">
+          ・カードをドラッグして自由に並び替え（スマホは長押し / 自動保存・他端末引き継ぎ不可）<br>
+          ・1曲・全曲リピート、シャッフル対応（※全曲リピート時は手動で次の曲へ進めてください）
+        </div>
+      </div>
+      <button class="start-play-btn" onclick="startPlaylist()">▶ マイリストを再生</button>
+    </div>
+<!-- スマートフォン用検索ポップアップ（ヘッダー直下にドロップダウン表示） -->
+<div id="searchPopupContainer" style="display: none; position: absolute; top: 60px; left: 0; width: 100%; z-index: 1000; padding: 12px 16px; background: var(--bg-card, #1a1a24); border-bottom: 2px solid var(--primary-pink); box-sizing: border-box; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+  <div class="search-sort-row" style="flex-direction: column; align-items: stretch; gap: 8px; width: 100%;">
+    <div class="filter-label">✦ SEARCH MUSIC</div>
+    <input type="text" id="mobileSearchInput" class="search-input" placeholder="例：ラルク / L'Arc〜en〜Ciel / 歌ってみた" oninput="document.getElementById('searchInput').value = this.value; renderSongs();" style="width: 100%; padding: 10px 14px; font-size: 0.9rem; background: #222230; color: #fff; border: 1px solid var(--primary-pink); border-radius: 6px; outline: none; box-sizing: border-box;">
+  </div>
+</div>
+
+<!-- 外枠とカードの空間を極限まで狭くしたメインコンテンツコンテナ -->
+<div style="max-width: 1300px; margin: 0 auto; padding: 0; box-sizing: border-box; width: 100%;">
+  
+  <div class="search-sort-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 20px; box-sizing: border-box; padding: 0 4px;">
+    <div id="searchResultCount" style="font-size: 0.9rem; color: #e2e8f0; font-weight: 500; visibility: hidden;">検索結果：0件</div>
+    <select id="sortSelect" class="sort-select" onchange="renderSongs()">
+      <option value="date-desc">並び替え：投稿日が新しい順</option>
+      <option value="date-asc">投稿日が古い順</option>
+      <option value="title-asc">楽曲名順</option>
+      <option value="artist-asc">アーティスト順</option>
+      <option value="category-asc">カテゴリー順</option>
+      <option value="custom">カスタム / 選択順</option>
+    </select>
+  </div>
+
+  <div class="song-grid" id="songGrid"></div>
+
+</div>
+</div>
+
+    <div class="song-grid" id="songGrid"></div>
+  </div>
+</div>
+
+<div class="about-section" id="aboutSection">
+  <div class="section-heading" style="margin-top: 0;">✦ ABOUT & INFORMATION</div>
+  <div class="ornament-divider" style="margin-bottom: 14px;">
+    <span>✦</span>
+  </div>
+  <div class="about-section-body">
+    <p>当サイトは、にじさんじ所属「渡会雲雀」さんの応援を目的とした、個人運営の非公式ファンサイトです。</p>
+    <p>歌唱楽曲をはじめ、渡会雲雀さんが携わられた楽曲をまとめ、音楽活動をわかりやすく知っていただける場所を目指しています。</p>
+   
+    <div class="ornament-divider mobile-only-divider">
+      <span>✦</span>
+    </div>
+
+    <p style="margin-top: 8px;">当サイトはANYCOLOR株式会社様、にじさんじプロジェクト、渡会雲雀さんご本人とは一切関係ありません。</p>
+    <p>ANYCOLOR株式会社様の二次創作ガイドラインを遵守しその範囲内で画像・情報等を掲載しています。</p>
+    <p style="margin-top: 8px;">掲載情報は個人が確認した範囲のものであり、正確性・網羅性を保証するものではありません。</p>
+    <p style="margin-top: 8px;">誤りや不足等がございましたら、運営アカウント（<a href="https://x.com/npc_katsura" target="_blank" rel="noopener noreferrer" style="color: var(--primary-pink); text-decoration: underline;">@npc_katsura</a>）までご連絡ください。</p>
+   
+    <p class="about-note">※掲載楽曲は、公式動画・公式チャンネルへのリンクをご案内しています。</p>
+    <p class="about-note">※掲載コンテンツの無断転載・二次利用はご遠慮ください。</p>
+  </div>
+</div>
+
+<div class="yt-container" id="ytContainer">
+  <div id="ytplayer"></div>
+</div>
+
+<div class="player-bar" id="playerBar">
+  <div class="player-info">
+    <img id="pThumb" class="player-thumb" src="https://placehold.co/100x100/e2e8f0/64748b?text=Music" alt="Thumb">
+    <div class="player-text">
+      <div class="player-title" id="pTitle">未再生</div>
+      <div class="player-artist" id="pArtist">-</div>
+    </div>
+  </div>
+  <div class="player-controls">
+    <button class="control-btn" id="btnShuffle" onclick="toggleShuffle()" title="シャッフル">
+      <svg viewBox="0 0 24 24"><path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.45 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>
+    </button>
+    <button class="control-btn" onclick="playPrev()" title="前の曲">
+      <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+    </button>
+    <button class="control-btn play-pause-btn" id="btnPlay" onclick="togglePlay()" title="再生/一時停止">
+      <svg id="iconPlay" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="iconPause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+    <button class="control-btn" onclick="playNext()" title="次の曲">
+      <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+    </button>
+    <button class="control-btn active" id="btnRepeat" onclick="toggleRepeat()" title="リピート">
+      <svg id="iconRepeatAll" viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v3z"/></svg>
+      <svg id="iconRepeatOne" viewBox="0 0 24 24" style="display:none;"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v3zm-4-2V9h-1l-2 1v1h1.5v4H13z"/></svg>
+    </button>
+  </div>
+  <div class="player-right">
+    <button class="close-btn" onclick="closePlayer()" title="閉じる">
+      <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- スマホタップ時用：全員の顔ぶれを表示するモーダル -->
+<div id="singer-modal" class="singer-modal-overlay">
+  <div class="singer-modal-content">
+    <button class="singer-modal-close">&times;</button>
+    <p class="singer-modal-title"></p>
+    <div id="singer-modal-list" class="singer-modal-list"></div>
+  </div>
+</div>
+
+<script>
+  // --- アーティストの表記揺れ・エイリアス設定 ---
+  const artistAliases = {
+    "mrs. green apple": ["ミセス", "mrs.green apple", "ミセスグリーンアップル"],
+    "one ok rock": ["ワンオク"],
+    "L'Arc〜en〜Ciel": ["ラルク", "L'Arc〜en〜Ciel", "ラルクアンシエル"],
+    "ASIAN KUNG-FU GENERATION": ["アジカン", "ASIAN KUNG-FU GENERATION"],
+    "ST☆RISH": ["ST☆RISH", "スタリ", "うたプリ"],
+    // 追加例: "正式なアーティスト名": ["別名1", "別名2", ...]
+  };
+
+  // 文字列の正規化（大文字小文字、全角半角、スペース・記号の吸収）
+  function normalizeText(str) {
+    if (!str) return "";
+    return str
+      .toLowerCase()
+      .replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+      .replace(/[\s ]/g, "")
+      .replace(/[・ー－‐]/g, "");
+  }
+
+  function getExpandedKeywords(query) {
+    const normQuery = normalizeText(query);
+    let keywords = [normQuery];
+
+    for (const [canonical, aliases] of Object.entries(artistAliases)) {
+      const normCanonical = normalizeText(canonical);
+      const matchedAlias = aliases.some(alias => normalizeText(alias).includes(normQuery) || normQuery.includes(normalizeText(alias)));
+      if (normCanonical.includes(normQuery) || normQuery.includes(normCanonical) || matchedAlias) {
+        keywords.push(normCanonical);
+        aliases.forEach(a => keywords.push(normalizeText(a)));
+      }
+    }
+    return keywords;
+  }
+
+  // --- プレイヤー関連の変数 ---
+  let player = null;
+  let isPlayerReady = false;
+  let playQueue = [];
+  let currentPlayIndex = -1;
+  let isShuffleMode = false;
+  let repeatMode = 1;
+
+  // --- 状態管理・データ用の変数 ---
+  let selectedCategory = localStorage.getItem('hibari_category') || "";
+  let selectedSubFilter = localStorage.getItem('hibari_subfilter') || "";
+  let isMylistCategorySelected = (selectedCategory === 'マイリスト');
+  let favorites = JSON.parse(localStorage.getItem('hibari_mylist') || localStorage.getItem('hibari_favs') || '[]').map(String);
+  let sortableInstance = null;
+  let currentlyRenderedSongs = [];
+  let query = '';
+
+  function saveState() {
+    localStorage.setItem('hibari_category', selectedCategory);
+    localStorage.setItem('hibari_subfilter', selectedSubFilter);
+    const searchInput = document.getElementById('searchInput');
+    const sortSelect = document.getElementById('sortSelect');
+    if (searchInput) localStorage.setItem('hibari_search', searchInput.value);
+    if (sortSelect) localStorage.setItem('hibari_sort', sortSelect.value);
+  }
+
+  function loadState() {
+    const savedSearch = localStorage.getItem('hibari_search');
+    if (savedSearch !== null) {
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) searchInput.value = savedSearch;
+    }
+    const savedSort = localStorage.getItem('hibari_sort');
+    if (savedSort !== null) {
+      const sortSelect = document.getElementById('sortSelect');
+      if (sortSelect) sortSelect.value = savedSort;
+    }
+
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-tag') === selectedCategory);
+    });
+    document.querySelectorAll('.sub-filter-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-sub') === selectedSubFilter);
+    });
+  }
+
+  function getSingerInfo(singer) {
+    let name = '';
+    let icon = '';
+    let color = '';
+
+    if (typeof singer === 'object' && singer !== null) {
+      name = singer.name || '';
+      icon = singer.icon || singer.image || singer.avatar || '';
+      color = singer.color || singer.colorCode || '';
+    } else if (typeof singer === 'string') {
+      name = singer;
+    }
+
+    const masterDataSources = [
+      typeof singerData !== 'undefined' ? singerData : null,
+      typeof singersMaster !== 'undefined' ? singersMaster : null,
+      typeof members !== 'undefined' ? members : null,
+      typeof singers !== 'undefined' ? singers : null
+    ];
+
+    for (const source of masterDataSources) {
+      if (source && source[name]) {
+        const master = source[name];
+        if (!icon) icon = master.icon || master.image || master.avatar || '';
+        if (!color) color = master.color || master.colorCode || '';
+        break;
+      }
+    }
+
+    if (!icon && name) {
+      icon = `images/singers/${name}.png`;
+    }
+
+    return { name, icon, color };
+  }
+
+  function getGroupInfo(group) {
+    let name = '';
+    let icon = '';
+    let color = '';
+
+    if (typeof group === 'object' && group !== null) {
+      name = group.name || '';
+      icon = group.icon || group.image || group.avatar || '';
+      color = group.color || group.colorCode || '';
+    } else if (typeof group === 'string') {
+      name = group;
+    }
+
+    const masterDataSources = [
+      typeof groupData !== 'undefined' ? groupData : null,
+      typeof groupsMaster !== 'undefined' ? groupsMaster : null,
+      typeof groups !== 'undefined' ? groups : null
+    ];
+
+    for (const source of masterDataSources) {
+      if (source && source[name]) {
+        const master = source[name];
+        if (!icon) icon = master.icon || master.image || master.avatar || '';
+        if (!color) color = master.color || master.colorCode || '';
+        break;
+      }
+    }
+    
+    return { name, icon, color };
+  }
+  
+  function getVideoId(url) {
+    if (!url) return null;
+    let videoId = null;
+    try {
+      const parsedUrl = new URL(url);
+      if (parsedUrl.hostname.includes('youtube.com')) {
+        if (parsedUrl.searchParams.has('v')) {
+          videoId = parsedUrl.searchParams.get('v');
+        } else {
+          const pathSegments = parsedUrl.pathname.split('/').filter(Boolean);
+          if (pathSegments.length > 0) videoId = pathSegments[pathSegments.length - 1];
+        }
+      } else if (parsedUrl.hostname.includes('youtu.be')) {
+        const pathSegments = parsedUrl.pathname.split('/').filter(Boolean);
+        if (pathSegments.length > 0) videoId = pathSegments[0];
+      }
+    } catch (e) {
+      const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/);
+      if (match) videoId = match[1];
+    }
+    return (videoId && videoId.length >= 11) ? videoId.substring(0, 11) : null;
+  }
+
+  function getYoutubeThumb(url) {
+    const vid = getVideoId(url);
+    return vid ? `https://img.youtube.com/vi/${vid}/mqdefault.jpg` : 'https://placehold.co/320x180/e2e8f0/64748b?text=No+Image';
+  }
+
+  function toggleFavorite(event, id) {
+    if (event) { event.stopPropagation(); event.preventDefault(); }
+    const targetId = String(id);
+    if (favorites.includes(targetId)) favorites = favorites.filter(f => f !== targetId);
+    else favorites.push(targetId);
+    localStorage.setItem('hibari_mylist', JSON.stringify(favorites));
+
+    const isMobile = window.innerWidth <= 768;
+    const isMylistCategorySelected = (selectedCategory === 'マイリスト');
+
+    if (isMobile && !isMylistCategorySelected) {
+      const card = document.querySelector(`.song-card[data-id="${targetId}"]`);
+      if (card) {
+        const favBtn = card.querySelector('.fav-btn');
+        if (favBtn) {
+          favBtn.classList.toggle('active', favorites.includes(targetId));
+        }
+      }
+    } else {
+      renderSongs();
+    }
+  }
+
+  function toggleTag(tag) {
+    selectedCategory = (selectedCategory === tag) ? "" : tag;
+    selectedSubFilter = "";
+    isMylistCategorySelected = (selectedCategory === 'マイリスト');
+   
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      const btnTag = btn.getAttribute('data-tag');
+      btn.classList.toggle('active', btnTag === selectedCategory);
+    });
+
+    document.querySelectorAll('.sub-filter-btn').forEach(btn => {
+      const btnSub = btn.getAttribute('data-sub');
+      btn.classList.toggle('active', btnSub === "");
+    });
+
+    saveState();
+    renderSongs();
+  }
+
+  function toggleSubFilter(sub) {
+    selectedSubFilter = (selectedSubFilter === sub) ? "" : sub;
+   
+    document.querySelectorAll('.sub-filter-btn').forEach(btn => {
+      const btnSub = btn.getAttribute('data-sub');
+      btn.classList.toggle('active', selectedSubFilter === btnSub);
+    });
+    saveState();
+    renderSongs();
+  }
+
+  function songHasCategory(song, category) {
+    if (!song.tags) return false;
+    if (song.tags.includes(category)) return true;
+    if (category === 'その他' && (song.tags.includes('Mix') || song.tags.includes('コーラス/演奏'))) {
+      return true;
+    }
+    return false;
+  }
+
+  function matchSearch(song, queryText) {
+    if (!queryText) return true;
+    const rawQuery = queryText.trim();
+    const searchTerms = rawQuery.includes(' OR ') || rawQuery.includes(',')
+      ? rawQuery.split(/ OR |,/).map(t => t.trim()).filter(Boolean)
+      : rawQuery.split(/\s+/).map(t => t.trim()).filter(Boolean);
+
+    const groupText = song.group ? song.group.join(' ') : '';
+    let singerText = '';
+    if (song.singers) {
+      singerText = song.singers.map(s => getSingerInfo(s).name).join(' ');
+    }
+
+    return searchTerms.some(term => {
+      const q = normalizeText(term);
+      if (!q) return false;
+
+      const matchedCanonicalArtists = [];
+      for (const [canonical, aliases] of Object.entries(artistAliases)) {
+        if (aliases.some(alias => normalizeText(alias).includes(q))) {
+          matchedCanonicalArtists.push(normalizeText(canonical));
+        }
+      }
+
+      const titleText = normalizeText(song.title || '');
+      const artistText = normalizeText(song.artist || '');
+      const gText = normalizeText(groupText);
+      const sText = normalizeText(singerText);
+
+      return (
+        titleText.includes(q) ||
+        artistText.includes(q) ||
+        gText.includes(q) ||
+        sText.includes(q) ||
+        matchedCanonicalArtists.some(canonical => artistText.includes(canonical) || sText.includes(canonical))
+      );
+    });
+  }
+
+  function matchSubFilter(song, subFilter = selectedSubFilter) {
+    if (!subFilter) return true;
+   
+    if (subFilter === 'ソロ') {
+      return song.singers && Array.isArray(song.singers) && song.singers.length === 1 && song.singers[0] === '渡会雲雀';
+    }
+
+    if (subFilter.includes('2時だとか')) {
+      const inGroup = song.group && song.group.includes('2時だとか');
+      const inTags = song.tags && song.tags.includes('バンド');
+      return inGroup || inTags;
+    }
+
+    const inGroup = song.group && song.group.includes(subFilter);
+    const inTags = song.tags && song.tags.includes(subFilter);
+
+    return inGroup || inTags;
+  }
+
+  function updateCategoryCounts() {
+    if (typeof songs === 'undefined' || !Array.isArray(songs)) return;
+    
+    const searchElement = document.getElementById('searchInput');
+    query = searchElement ? searchElement.value : '';
+
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    categoryButtons.forEach(btn => {
+      const tag = btn.getAttribute('data-tag');
+      let count = 0;
+
+      if (tag === '') {
+        count = songs.filter(song => matchSearch(song, query) && matchSubFilter(song)).length;
+      } else if (tag === 'マイリスト') {
+        favorites.forEach(favId => {
+          const found = songs.find(s => String(s.id) === favId);
+          if (found && matchSearch(found, query) && matchSubFilter(found)) count++;
+        });
+      } else {
+        count = songs.filter(song => {
+          if (!songHasCategory(song, tag)) return false;
+          return matchSearch(song, query) && matchSubFilter(song);
+        }).length;
+      }
+     
+      const labelText = tag === '' ? 'すべて' : tag;
+      btn.innerHTML = `${labelText} <span class="count">(${count})</span>`;
+    });
+
+    const subFilterButtons = document.querySelectorAll('.sub-filter-btn');
+    subFilterButtons.forEach(btn => {
+      const sub = btn.getAttribute('data-sub');
+      let count = 0;
+
+      if (sub === '') {
+        count = songs.filter(song => {
+          if (selectedCategory !== '' && selectedCategory !== 'マイリスト') {
+            if (!songHasCategory(song, selectedCategory)) return false;
+          }
+          if (selectedCategory === 'マイリスト') {
+            if (!favorites.includes(String(song.id))) return false;
+          }
+          return matchSearch(song, query);
+        }).length;
+      } else {
+        count = songs.filter(song => {
+          if (!matchSearch(song, query)) return false;
+
+          if (selectedCategory !== '' && selectedCategory !== 'マイリスト') {
+            if (!songHasCategory(song, selectedCategory)) return false;
+          }
+          if (selectedCategory === 'マイリスト') {
+            if (!favorites.includes(String(song.id))) return false;
+          }
+
+          return matchSubFilter(song, sub);
+        }).length;
+      }
+
+      const labelSub = sub === '' ? '指定なし' : sub;
+      btn.innerHTML = `${labelSub} <span class="count">(${count})</span>`;
+    });
+  }
+
+  function handlePlayAction(songId, youtubeUrl) {
+    if (selectedCategory === 'マイリスト') {
+      playSpecificSong(songId);
+    } else {
+      if (youtubeUrl) {
+        window.open(youtubeUrl, '_blank', 'noopener,noreferrer');
+      }
+    }
+  }
+
+  function renderSongs() {
+    if (typeof songs === 'undefined' || !Array.isArray(songs)) return;
+
+    const sortSelect = document.getElementById('sortSelect');
+    const searchInput = document.getElementById('searchInput');
+    const sortType = sortSelect ? sortSelect.value : 'custom';
+    query = searchInput ? searchInput.value : '';
+
+    const grid = document.getElementById('songGrid');
+    const favNotice = document.getElementById('favNotice');
+    
+    if (!grid) return;
+    grid.innerHTML = '';
+    isMylistCategorySelected = (selectedCategory === 'マイリスト');
+
+    if (favNotice) {
+      if (isMylistCategorySelected) {
+        favNotice.style.display = 'block';
+        grid.classList.add('is-fav-mode');
+      } else {
+        favNotice.style.display = 'none';
+        grid.classList.remove('is-fav-mode');
+      }
+    }
+
+    let filtered = [];
+    if (isMylistCategorySelected) {
+      favorites.forEach(favId => {
+        const found = songs.find(s => String(s.id) === favId);
+        if (found && matchSearch(found, query) && matchSubFilter(found)) {
+          filtered.push(found);
+        }
+      });
+    } else {
+      filtered = songs.filter(song => {
+        if (selectedCategory !== '' && !songHasCategory(song, selectedCategory)) {
+          return false;
+        }
+        return matchSearch(song, query) && matchSubFilter(song);
+      });
+    }
+
+    if (sortType !== 'custom') {
+      filtered.sort((a, b) => {
+        if (sortType === 'date-desc') return new Date(b.date || 0) - new Date(a.date || 0);
+        if (sortType === 'date-asc') return new Date(a.date || 0) - new Date(b.date || 0);
+        if (sortType === 'title-asc') return (a.title || '').localeCompare(b.title || '', 'ja', { numeric: true, sensitivity: 'base' });
+        if (sortType === 'category-asc') {
+          const catA = (a.tags && a.tags[0]) || '';
+          const catB = (b.tags && b.tags[0]) || '';
+          return catA.localeCompare(catB, 'ja');
+        }
+        if (sortType === 'artist-asc') return (a.artist || '').localeCompare(b.artist || '', 'ja');
+        return 0;
+      });
+    }
+    currentlyRenderedSongs = filtered;
+
+    updateCategoryCounts();
+
+    filtered.forEach(song => {
+      const card = document.createElement('div');
+      card.className = 'song-card';
+      card.dataset.id = String(song.id);
+      if (isMylistCategorySelected && player && currentPlayIndex !== -1 && playQueue[currentPlayIndex] && String(playQueue[currentPlayIndex].id) === String(song.id)) {
+        card.classList.add('playing');
+      }
+
+      const isFav = favorites.includes(String(song.id));
+      
+      const hasVideo = song.youtube && song.youtube.trim() !== "";
+      const baseThumb = getYoutubeThumb(song.youtube);
+      const finalThumbUrl = (song.customThumbnail && song.customThumbnail.trim() !== "") ? song.customThumbnail : baseThumb;
+
+      const thumbElementHtml = hasVideo 
+        ? `<a href="${song.youtube}" target="_blank" class="thumb-frame" onclick="event.stopPropagation()"><img src="${finalThumbUrl}" alt="${song.title}" loading="lazy"></a>`
+        : `<div class="thumb-frame"><img src="${finalThumbUrl}" alt="${song.title}" loading="lazy"></div>`;
+
+      const actionButtonHtml = hasVideo
+        ? `<button class="yt-btn" onclick="handlePlayAction('${song.id}', '${song.youtube}')">▶</button>`
+        : `<button class="yt-btn is-disabled" disabled>—</button>`;
+
+      const dateHtml = song.date ? `<div class="song-date" style="font-size: 0.8rem; color: #64748b; margin-top: 2px;">公開日：${song.date}</div>` : '';
+
+      let singersHtml = '';
+      let iconsInner = '';
+
+      if (song.singers && song.singers.length > 0) {
+        const singerIcons = song.singers.map(s => {
+          const info = getSingerInfo(s);
+          const borderStyle = info.color ? `style="border-color: ${info.color};"` : '';
+          return `<img src="${info.icon}" class="singer-icon" ${borderStyle} title="${info.name}" alt="${info.name}" draggable="false" onerror="this.style.borderColor='var(--primary-pink)'">`;
+        }).join('');
+        iconsInner += singerIcons;
+      }
+
+      if (song.group && song.group.length > 0) {
+        const groupIcons = song.group.map(g => {
+          const info = getGroupInfo(g);
+          const borderStyle = info.color ? `style="border-color: ${info.color};"` : '';
+          return `<img src="${info.icon}" class="singer-icon" ${borderStyle} title="${info.name}" alt="${info.name}" draggable="false" onerror="this.style.borderColor='var(--primary-pink)'">`;
+        }).join('');
+        iconsInner += groupIcons;
+      }
+
+      if (iconsInner) {
+        singersHtml = `<div class="singers-container">${iconsInner}</div>`;
+      }
+
+      let tagsHtml = '';
+      if (song.tags && song.tags.length > 0) {
+        tagsHtml = `<div class="tags-container">` + song.tags.map(t => `<span class="tag">${t}</span>`).join('') + `</div>`;
+      }
+
+      card.innerHTML = `
+        <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite(event, '${song.id}')">★</button>
+        ${thumbElementHtml}
+        <div class="card-content">
+          <div class="song-title">${song.title}</div>
+          <div class="song-artist">${song.artist}</div>
+          ${dateHtml}
+          ${singersHtml}
+          ${tagsHtml}
+        </div>
+        ${actionButtonHtml}
+      `;
+
+      grid.appendChild(card);
+    });
+
+    grid.querySelectorAll('.singers-container').forEach(container => {
+      const icons = container.querySelectorAll('.singer-icon');
+      if (icons.length >= 8) {
+        container.classList.add('is-stacked');
+
+        const hiddenIcons = [];
+        icons.forEach((icon, index) => {
+          if (index >= 6) {
+            icon.style.display = 'none';
+            hiddenIcons.push(icon);
+          }
+        });
+
+        const badge = document.createElement('div');
+        badge.className = 'singer-more-badge';
+        badge.textContent = `+${hiddenIcons.length}`;
+
+        badge.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const modal = document.getElementById('singer-modal');
+          const modalList = document.getElementById('singer-modal-list');
+          if (modal && modalList) {
+            modalList.innerHTML = '';
+            icons.forEach(icon => {
+              const clone = icon.cloneNode(true);
+              clone.style.display = 'block';
+              clone.style.width = '34px';
+              clone.style.height = '34px';
+              clone.style.margin = '0';
+              modalList.appendChild(clone);
+            });
+            modal.style.display = 'flex';
+          }
+        });
+
+        container.appendChild(badge);
+      }
+    });
+
+    if (sortableInstance) {
+      sortableInstance.destroy();
+      sortableInstance = null;
+    }
+    if (isMylistCategorySelected && typeof Sortable !== 'undefined') {
+      sortableInstance = new Sortable(grid, {
+        animation: 150,
+        ghostClass: 'sortable-ghost',
+        filter: 'button, a, input',
+        preventOnFilter: false,
+        forceFallback: true,
+        onEnd: function () {
+          const currentDOMOrder = Array.from(grid.children).map(card => card.dataset.id);
+          const updatedMylist = [...currentDOMOrder];
+          favorites.forEach(id => { if (!updatedMylist.includes(id)) updatedMylist.push(id); });
+          favorites = updatedMylist;
+          localStorage.setItem('hibari_mylist', JSON.stringify(favorites));
+          currentlyRenderedSongs = updatedMylist.map(id => songs.find(s => String(s.id) === id)).filter(Boolean);
+          if(!isShuffleMode) playQueue = [...currentlyRenderedSongs];
+        }
+      });
+    }
+  }
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('ytplayer', {
+      host: 'https://www.youtube-nocookie.com',
+      playerVars: {
+        'autoplay': 1,
+        'playsinline': 1,
+        'controls': 1,
+        'enablejsapi': 1,
+        'rel': 0
+      },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    isPlayerReady = true;
+  }
+
+  function updatePlayPauseUI(isPlaying) {
+    const iconPlay = document.getElementById('iconPlay');
+    const iconPause = document.getElementById('iconPause');
+    if (!iconPlay || !iconPause) return;
+    if (isPlaying) {
+      iconPlay.style.display = 'none';
+      iconPause.style.display = 'block';
+    } else {
+      iconPlay.style.display = 'block';
+      iconPause.style.display = 'none';
+    }
+  }
+
+  function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.PLAYING) {
+      updatePlayPauseUI(true);
+      renderSongs();
+    } else if (event.data === YT.PlayerState.PAUSED) {
+      updatePlayPauseUI(false);
+    } else if (event.data === YT.PlayerState.ENDED) {
+      if (repeatMode === 2) {
+        player.playVideo();
+      } else {
+        playNext();
+      }
+    }
+  }
+
+  function showPlayerUI() {
+    const playerBar = document.getElementById('playerBar');
+    const ytContainer = document.getElementById('ytContainer');
+    if (playerBar) playerBar.classList.add('visible');
+    if (ytContainer) ytContainer.classList.add('visible');
+  }
+
+  function startPlaylist() {
+    if (currentlyRenderedSongs.length === 0) return;
+    if (isShuffleMode) {
+      playQueue = [...currentlyRenderedSongs].sort(() => Math.random() - 0.5);
+    } else {
+      playQueue = [...currentlyRenderedSongs];
+    }
+    showPlayerUI();
+    playTrack(0);
+  }
+
+  function playSpecificSong(songId) {
+    if (currentlyRenderedSongs.length === 0) return;
+    if (isShuffleMode) playQueue = [...currentlyRenderedSongs].sort(() => Math.random() - 0.5);
+    else playQueue = [...currentlyRenderedSongs];
+   
+    const index = playQueue.findIndex(s => String(s.id) === String(songId));
+    if (index !== -1) {
+      showPlayerUI();
+      playTrack(index);
+    }
+  }
+
+  function playTrack(index) {
+    if (index < 0 || index >= playQueue.length) return;
+    currentPlayIndex = index;
+    const song = playQueue[index];
+    const videoId = getVideoId(song.youtube);
+   
+    if (videoId) {
+      let startSeconds = 0;
+      const tMatch = song.youtube.match(/[?&]t=(\d+)/);
+      if (tMatch) startSeconds = parseInt(tMatch[1], 10);
+
+      const pTitle = document.getElementById('pTitle');
+      const pArtist = document.getElementById('pArtist');
+      const pThumb = document.getElementById('pThumb');
+      if (pTitle) pTitle.innerText = song.title;
+      if (pArtist) pArtist.innerText = song.artist;
+      if (pThumb) pThumb.src = getYoutubeThumb(song.youtube);
+
+      const doPlay = () => {
+        try {
+          player.loadVideoById({
+            videoId: videoId,
+            startSeconds: startSeconds
+          });
+        } catch(e) {}
+      };
+
+      if (isPlayerReady) {
+        doPlay();
+      } else {
+        const check = setInterval(() => {
+          if (isPlayerReady) {
+            clearInterval(check);
+            doPlay();
+          }
+        }, 100);
+      }
+    } else {
+      playNext();
+    }
+  }
+
+  function togglePlay() {
+    if (!player || !isPlayerReady) return;
+    const state = player.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) {
+      player.pauseVideo();
+    } else {
+      player.playVideo();
+    }
+  }
+
+  function playNext() {
+    if (playQueue.length === 0) return;
+    let nextIndex = currentPlayIndex + 1;
+    if (nextIndex >= playQueue.length) {
+      if (repeatMode === 1) nextIndex = 0;
+      else return;
+    }
+    playTrack(nextIndex);
+  }
+
+  function playPrev() {
+    if (playQueue.length === 0) return;
+    let prevIndex = currentPlayIndex - 1;
+    if (prevIndex < 0) prevIndex = playQueue.length - 1;
+    playTrack(prevIndex);
+  }
+
+  function toggleShuffle() {
+    isShuffleMode = !isShuffleMode;
+    const btnShuffle = document.getElementById('btnShuffle');
+    if (btnShuffle) btnShuffle.classList.toggle('active', isShuffleMode);
+   
+    if (playQueue.length > 0) {
+      const currentSong = playQueue[currentPlayIndex];
+      if (isShuffleMode) {
+        const others = currentlyRenderedSongs.filter(s => String(s.id) !== String(currentSong.id));
+        others.sort(() => Math.random() - 0.5);
+        playQueue = [currentSong, ...others];
+        currentPlayIndex = 0;
+      } else {
+        playQueue = [...currentlyRenderedSongs];
+        currentPlayIndex = playQueue.findIndex(s => String(s.id) === String(currentSong.id));
+      }
+    }
+  }
+
+  function toggleRepeat() {
+    repeatMode = (repeatMode + 1) % 3;
+    const btn = document.getElementById('btnRepeat');
+    const iconAll = document.getElementById('iconRepeatAll');
+    const iconOne = document.getElementById('iconRepeatOne');
+
+    if (!btn || !iconAll || !iconOne) return;
+
+    if (repeatMode === 0) {
+      btn.classList.remove('active');
+      btn.title = "リピート: オフ";
+      iconAll.style.display = 'block';
+      iconOne.style.display = 'none';
+    } else if (repeatMode === 1) {
+      btn.classList.add('active');
+      btn.title = "リピート: 全曲";
+      iconAll.style.display = 'block';
+      iconOne.style.display = 'none';
+    } else if (repeatMode === 2) {
+      btn.classList.add('active');
+      btn.title = "リピート: 1曲";
+      iconAll.style.display = 'none';
+      iconOne.style.display = 'block';
+    }
+  }
+
+  function closePlayer() {
+    if (player && isPlayerReady) {
+      try { player.stopVideo(); } catch(e) {}
+    }
+    const playerBar = document.getElementById('playerBar');
+    const ytContainer = document.getElementById('ytContainer');
+    if (playerBar) playerBar.classList.remove('visible');
+    if (ytContainer) ytContainer.classList.remove('visible');
+    currentPlayIndex = -1;
+    updatePlayPauseUI(false);
+    renderSongs();
+  }
+
+  // --- モバイル用メニュー制御 ---
+  function toggleMobileMenu(event) {
+    if (event) event.stopPropagation();
+    const menu = document.getElementById('mobileDropdownMenu');
+    if (menu) {
+      menu.classList.toggle('is-open');
+    }
+  }
+
+  function closeMobileMenu() {
+    const menu = document.getElementById('mobileDropdownMenu');
+    if (menu) {
+      menu.classList.remove('is-open');
+    }
+  }
+
+window.addEventListener('DOMContentLoaded', () => {
+      loadState();
+    renderSongs();
+
+    // モーダル閉じる処理
+    const modal = document.getElementById('singer-modal');
+    const closeBtn = document.querySelector('.singer-modal-close');
+    if (closeBtn && modal) {
+      closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+});
+    }
+  });
+// メニューが開いているときに外側をクリックしたら閉じる
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('mobileDropdownMenu');
+      const btn = document.querySelector('.mobile-menu-btn');
+      if (menu && menu.classList.contains('is-open')) {
+        if (!menu.contains(e.target) && btn && !btn.contains(e.target)) {
+          menu.classList.remove('is-open');
+        }
+      }
+    });
+
+    // PC用検索バーのトグル
+ function togglePcSearch(event) {
+  if (event) event.preventDefault();
+  const container = document.getElementById('searchPopupContainer');
+  if (container) {
+    container.style.display = container.style.display === 'none' ? 'block' : 'none';
+    const input = document.getElementById('searchInput');
+    if (container.style.display === 'block' && input) input.focus();
+  }
+}
+
+function toggleMobileSearch(event) {
+  if (event) event.stopPropagation();
+  const container = document.getElementById('searchPopupContainer');
+  if (container) {
+    const isHidden = container.style.display === 'none' || container.style.display === '';
+    container.style.display = isHidden ? 'block' : 'none';
+    if (isHidden) {
+      const input = document.getElementById('mobileSearchInput');
+      if (input) input.focus();
+    }
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  // メニューが開いているときに外側をクリックしたら閉じる
+  document.addEventListener('click', (e) => {
+    const menu = document.getElementById('mobileDropdownMenu');
+    const btn = document.querySelector('.mobile-menu-btn');
+    if (menu && menu.classList.contains('is-open')) {
+      if (!menu.contains(e.target) && btn && !btn.contains(e.target)) {
+        menu.classList.remove('is-open');
+      }
+    }
+  });
+});
+</script>
+</body>
+ </html>
