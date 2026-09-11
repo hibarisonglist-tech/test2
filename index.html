@@ -695,6 +695,39 @@ border-color: var(--singer-border-color, inherit) !important;
   height: 30px !important;
   margin-right: -8px !important; /* アイコンを重ねる場合のマージン */
 }
+@media (max-width: 600px) {
+  /* スマホ版：デフォルトで非表示にする詳細サブカテゴリ群のスタイル */
+  .mobile-detail-subcategories {
+    display: none;
+  }
+  .mobile-detail-subcategories.is-open {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  /* 詳細絞り込みトグルボタンのスタイル（既存のボタンデザインを維持） */
+  .mobile-detail-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--bg-card, #1a1a24);
+    color: var(--primary-pink, #ff69b4);
+    border: 1px solid var(--primary-pink, #ff69b4);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+}
+@media (min-width: 601px) {
+  /* PC版ではスマホ用アコーディオンパーツを完全に非表示 */
+  .mobile-detail-toggle,
+  .mobile-detail-subcategories {
+    display: contents !important;
+  }
+}
 </style>
 </head>
 <body id="topPage">
@@ -1748,6 +1781,52 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+// スマホ版詳細絞り込みアコーディオンの開閉切り替え
+function toggleMobileDetailFilter() {
+  const detailContainer = document.getElementById('mobileDetailSubcategories');
+  const toggleBtn = document.getElementById('mobileDetailToggleText');
+  if (!detailContainer) return;
+  
+  const isOpen = detailContainer.classList.toggle('is-open');
+  if (toggleBtn) {
+    toggleBtn.textContent = isOpen ? '▴ 詳細絞り込みを閉じる' : '▾ 詳細絞り込み';
+  }
+}
+
+// 既存のカテゴリ選択・フィルター描画処理のスマホ連動補強（件数・判定ロジックは変更なし）
+function updateMobileSubcategoryVisibility() {
+  if (window.innerWidth > 600) return;
+  
+  const currentCategory = window.selectedCategory || 'すべて';
+  const subcategoryButtons = document.querySelectorAll('#subCategoryContainer .filter-btn, .sub-category-btn');
+  
+  // 選択されたカテゴリに属する楽曲データを走査し、有効なサブカテゴリを判定
+  // （既存の楽曲データ構造・既存のフィルタリング判定ロジックをそのまま利用）
+  subcategoryButtons.forEach(btn => {
+    const subName = btn.getAttribute('data-tag') || btn.textContent.replace(/\s*\(\d+\)/g, '').trim();
+    if (subName === '指定なし') {
+      btn.style.display = '';
+      return;
+    }
+    
+    // 該当カテゴリにおける存在チェック
+    let hasMatch = false;
+    if (typeof songs !== 'undefined') {
+      hasMatch = songs.some(song => {
+        const matchCat = (currentCategory === 'すべて' || song.category === currentCategory);
+        const matchSub = (song.tags && song.tags.includes(subName)) || (song.group === subName);
+        return matchCat && matchSub;
+      });
+    }
+    
+    // スマホ版での表示・非表示制御
+    if (currentCategory !== 'すべて' && !hasMatch) {
+      btn.style.display = 'none';
+    } else {
+      btn.style.display = '';
+    }
+  });
+}
 </script>
 </body>
  </html>
