@@ -1137,7 +1137,7 @@ border-color: var(--singer-border-color, inherit) !important;
     if (sortSelect) localStorage.setItem('hibari_sort', sortSelect.value);
   }
 
-  function loadState() {
+function loadState() {
     const savedSearch = localStorage.getItem('hibari_search');
     if (savedSearch !== null) {
       const searchInput = document.getElementById('searchInput');
@@ -1155,6 +1155,12 @@ border-color: var(--singer-border-color, inherit) !important;
     document.querySelectorAll('.sub-filter-btn').forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-sub') === selectedSubFilter);
     });
+
+    // ▼ 【追加】初期表示時にカテゴリのスクロール位置を一番左（すべて）にする
+    const categoryContainer = document.getElementById('categoryContainer');
+    if (categoryContainer) {
+      categoryContainer.scrollLeft = 0;
+    }
   }
 
   function getSingerInfo(singer) {
