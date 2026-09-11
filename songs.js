@@ -412,10 +412,6 @@ const singerData = {
     icon: "https://pbs.twimg.com/profile_images/1907036628629250049/7yMTK6kz_400x400.jpg", 
     color: "#DAFFF9" 
     },
-    "ギルザレンⅢ世": { 
-    icon: "https://pbs.twimg.com/profile_images/1509916138549157892/PGR0Irnt_400x400.jpg", 
-    color: "#002FA7" 
-    },
 
 
 

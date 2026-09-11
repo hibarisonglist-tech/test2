@@ -676,22 +676,20 @@ border-color: var(--singer-border-color, inherit) !important;
 
 /* 歌唱アイコンのコンテナ（仮に .song-vocalists とします）に対する修正 */
 /* アイコンの数やサイズに応じて、最低限必要な幅（min-width）を指定してください */
-.singer.icon {
-  /* 例として、アイコン5-6個分が収まる程度の幅を確保します（環境に合わせて調整） */
-  min-width: 180px !important;
-  
-  /* 横幅が足りなくても折り返さない */
-  flex-wrap: nowrap !important;
-  
-  /* 必要に応じて、親要素の幅を超えて表示する（視覚的に一列を維持） */
-  overflow-x: visible !important;
-}
+@media (max-width: 600px) {
+  .artist-icons, 
+  .song-card .artist-icons {
+    flex-wrap: nowrap !important;
+  }
 
-/* 各アイコン画像のサイズ（必要に応じて微調整） */
-.singer.icon {
-  width: 30px !important;
-  height: 30px !important;
-  margin-right: -8px !important; /* アイコンを重ねる場合のマージン */
+  .artist-icons img, 
+  .artist-icons span, 
+  .singer.icon {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    flex-shrink: 0 !important;
+  }
 }
 @media (max-width: 600px) {
   .sub-filter-toggle-btn {
