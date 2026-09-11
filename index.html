@@ -1156,13 +1156,13 @@ function loadState() {
       btn.classList.toggle('active', btn.getAttribute('data-sub') === selectedSubFilter);
     });
 
-    // ▼ 【追加】初期表示時にカテゴリのスクロール位置を一番左（すべて）にする
     const categoryContainer = document.getElementById('categoryContainer');
     if (categoryContainer) {
-      categoryContainer.scrollLeft = 0;
+      setTimeout(() => {
+        categoryContainer.scrollLeft = 0;
+      }, 0);
     }
   }
-
   function getSingerInfo(singer) {
     let name = '';
     let icon = '';
