@@ -3325,7 +3325,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未収録"],
     title:"Preserved Roses",
     artist:"T.M.Revolution×水樹奈々",
     date: "2025-12-31",
-    singers: ["渡会雲雀","壱百満天原サロメ","石神のぞみ","赤城ウェン","小柳ロウ","栞葉るり","榊ネス", "珠乃井ナナ"],
+    singers: ["渡会雲雀","壱百満天原サロメ"],
     tags: ["3D/ライブ","バンド","コラボ","再生リスト未収録"],
     youtube: "",
     customThumbnail:"https://pbs.twimg.com/media/G6U6xMOaEAAfaLL?format=jpg&name=large" // ← 手動で入れたいサムネイルのパス（無い場合は空欄でNo Imageになる）

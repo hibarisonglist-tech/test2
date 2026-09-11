@@ -364,8 +364,6 @@ border-color: var(--singer-border-color, inherit) !important;
       max-height: 200px;
       overflow-y: auto;
     }
-
-    /* スマホ向けレイアウト調整 */
  /* スマホ向けレイアウト調整 */
 @media (max-width: 600px) {
   .custom-logo-header {
@@ -696,36 +694,137 @@ border-color: var(--singer-border-color, inherit) !important;
   margin-right: -8px !important; /* アイコンを重ねる場合のマージン */
 }
 @media (max-width: 600px) {
-  /* スマホ版：デフォルトで非表示にする詳細サブカテゴリ群のスタイル */
-  .mobile-detail-subcategories {
-    display: none;
+  .sub-filter-toggle-btn {
+    display: none !important;
   }
-  .mobile-detail-subcategories.is-open {
-    display: flex;
+
+  /* サブカテゴリコンテナ自体の余白や高さをコンパクトに詰める */
+  #subFilterContainer {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    overflow-x: visible !important;
+    gap: 3px !important;
+    margin-top: 2px !important;
+    justify-content: center !important;
+    background: var(--bg-card, #1a1a24) !important;
+    border: 1px solid rgba(205, 55, 100, 0.35) !important;
+    border-radius: 10px !important;
+    padding: 6px 6px !important; /* 内側の余白を狭くする */
+  }
+
+  #subFilterContainer .sub-filter-btn {
+    font-size: 0.65rem !important;
+    padding: 2px 6px !important; /* ボタン自体の上下パディングを詰める */
+    border-radius: 20px !important;
+    border: 1px solid rgba(205, 55, 100, 0.4) !important;
+    background: transparent !important;
+    color: inherit !important;
+    margin: 0 !important;
+  }
+
+  /* ① 区切り線（-✦ -）の上下余白を最小限にする */
+  .section-divider, 
+  hr, 
+  .divider {
+    margin-top: 2px !important;
+    margin-bottom: 0px !important;
+  }
+
+  /* ② 見出し（ラベル）の上下余白を削ってコンパクトにする */
+  .filter-label, 
+  [class*="category-title"], 
+  [class*="filter-heading"] {
+    margin-top: 0px !important;   /* 上の隙間をなくす */
+    margin-bottom: 2px !important;  /* 下の隙間も最小限にしてボタンに近づける */
+  }
+}
+
+@media (min-width: 601px) {
+  .sub-filter-toggle-btn {
+    display: none !important;
+  }
+  #subFilterContainer {
+    display: flex !important;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
   }
-  /* 詳細絞り込みトグルボタンのスタイル（既存のボタンデザインを維持） */
-  .mobile-detail-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    background: var(--bg-card, #1a1a24);
-    color: var(--primary-pink, #ff69b4);
-    border: 1px solid var(--primary-pink, #ff69b4);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    cursor: pointer;
-    margin-top: 8px;
+
+  /* PC版の見出し余白も同様に詰める */
+  .filter-label, 
+  [class*="category-title"], 
+  [class*="filter-heading"] {
+    margin-top: 2px !important;
+    margin-bottom: 4px !important;
   }
+}
+
+/* CATEGORYのスクロールバーの見た目を短く・細くする */
+.categories::-webkit-scrollbar {
+  height: 2px !important;
+}
+
+.categories::-webkit-scrollbar-track {
+  background: transparent !important;
+  margin: 0 20px !important;
+}
+
+.categories::-webkit-scrollbar-thumb {
+  background: rgba(205, 55, 100, 0.4) !important;
+  border-radius: 4px !important;
 }
 @media (min-width: 601px) {
   /* PC版ではスマホ用アコーディオンパーツを完全に非表示 */
   .mobile-detail-toggle,
   .mobile-detail-subcategories {
     display: contents !important;
+  }
+}
+.sort-container {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 6px !important;
+  width: auto !important;
+}
+
+.sort-label {
+  color: inherit !important;
+  font-size: 0.9rem !important;
+}
+
+.sort-select {
+  background: var(--bg-card, #1a1a24) !important;
+  border: 1px solid rgba(205, 55, 100, 0.4) !important;
+  color: inherit !important;
+  border-radius: 8px !important;
+  padding: 6px 12px !important;
+  font-size: 0.9rem !important;
+  cursor: pointer !important;
+}
+
+@media (max-width: 600px) {
+  .sort-label {
+    font-size: 0.8rem !important;
+  }
+  .sort-select {
+    font-size: 0.8rem !important;
+    padding: 4px 10px !important;
+  }
+}
+@media (max-width: 600px) {
+  #subFilterContainer .sub-filter-btn {
+    background: transparent !important;
+    color: inherit !important;
+    border: 1px solid rgba(205, 55, 100, 0.4) !important;
+  }
+
+  /* 選択中（アクティブ）のボタン：確実にピンク色にする */
+  #subFilterContainer .sub-filter-btn.active {
+    background: var(--primary-pink, #ff69b4) !important;
+    color: #ffffff !important;
+    border-color: var(--primary-pink, #ff69b4) !important;
   }
 }
 </style>
@@ -804,20 +903,21 @@ border-color: var(--singer-border-color, inherit) !important;
       <span>✦</span>
     </div>
 
-    <div>
-      <div class="filter-label">✦ SUBCATEGORY & GROUP</div>
-      <div class="categories" id="subFilterContainer">
-        <button class="sub-filter-btn active" data-sub="" onclick="toggleSubFilter('')">指定なし <span class="count">(0)</span></button>
-        <button class="sub-filter-btn" data-sub="ソロ"onclick="toggleSubFilter('ソロ')">ソロ<span class="count">(0)</span></button>
-        <button class="sub-filter-btn" data-sub="コラボ" onclick="toggleSubFilter('コラボ')">コラボ <span class="count">(0)</span></button>
-        <button class="sub-filter-btn" data-sub="VOLTACTION" onclick="toggleSubFilter('VOLTACTION')">VOLTACTION <span class="count">(0)</span></button>
-        <button class="sub-filter-btn" data-sub="2時だとか/バンド" onclick="toggleSubFilter('2時だとか/バンド')">2時だとか/バンド <span class="count">(0)</span></button>
-        <button class="sub-filter-btn" data-sub="Shorts" onclick="toggleSubFilter('Shorts')">Shorts <span class="count">(0)</span></button>
-        <button class="sub-filter-btn" data-sub="Mix" onclick="toggleSubFilter('Mix')">Mix <span class="count">(0)</span></button>
-        <button class="sub-filter-btn" data-sub="コーラス/演奏" onclick="toggleSubFilter('コーラス/演奏')">コーラス/演奏 <span class="count">(0)</span></button>
-        <button class="sub-filter-btn" data-sub="再生リスト未収録" onclick="toggleSubFilter('再生リスト未収録')">再生リスト未収録 <span class="count">(0)</span></button>
-      </div>
-    </div>
+<div>
+<div class="mobile-subfilter-box">
+<div class="filter-label">✦ SUBCATEGORY & GROUP</div>
+<div class="categories" id="subFilterContainer">
+  <button class="sub-filter-btn active" data-sub="" onclick="toggleSubFilter('')">指定なし <span class="count">(0)</span></button>
+  <button class="sub-filter-btn" data-sub="ソロ" onclick="toggleSubFilter('ソロ')">ソロ<span class="count">(0)</span></button>
+  <button class="sub-filter-btn" data-sub="コラボ" onclick="toggleSubFilter('コラボ')">コラボ <span class="count">(0)</span></button>
+  <button class="sub-filter-btn" data-sub="VOLTACTION" onclick="toggleSubFilter('VOLTACTION')">VOLTACTION <span class="count">(0)</span></button>
+  <button class="sub-filter-btn" data-sub="2時だとか/バンド" onclick="toggleSubFilter('2時だとか/バンド')">2時だとか/バンド <span class="count">(0)</span></button>
+  <button class="sub-filter-btn" data-sub="Shorts" onclick="toggleSubFilter('Shorts')">Shorts <span class="count">(0)</span></button>
+  <button class="sub-filter-btn" data-sub="Mix" onclick="toggleSubFilter('Mix')">Mix <span class="count">(0)</span></button>
+  <button class="sub-filter-btn" data-sub="コーラス/演奏" onclick="toggleSubFilter('コーラス/演奏')">コーラス/演奏 <span class="count">(0)</span></button>
+  <button class="sub-filter-btn" data-sub="再生リスト未収録" onclick="toggleSubFilter('再生リスト未収録')">再生リスト未収録 <span class="count">(0)</span></button>
+</div>
+</div>
     
 
     <div class="fav-notice" id="favNotice">
@@ -841,18 +941,21 @@ border-color: var(--singer-border-color, inherit) !important;
 <!-- 外枠とカードの空間を極限まで狭くしたメインコンテンツコンテナ -->
 <div style="max-width: 1300px; margin: 0 auto; padding: 0; box-sizing: border-box; width: 100%;">
   
-  <div class="search-sort-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 20px; box-sizing: border-box; padding: 0 4px;">
-    <div id="searchResultCount" style="font-size: 0.9rem; color: #e2e8f0; font-weight: 500; visibility: hidden;">検索結果：0件</div>
-    <select id="sortSelect" class="sort-select" onchange="renderSongs()">
-      <option value="date-desc">並び替え：投稿日が新しい順</option>
-      <option value="date-asc">投稿日が古い順</option>
-      <option value="title-asc">楽曲名順</option>
-      <option value="artist-asc">アーティスト順</option>
-      <option value="category-asc">カテゴリー順</option>
-      <option value="custom">カスタム / 選択順</option>
-    </select>
+  <div class="search-sort-row" style="display: flex; justify-content: flex-end; align-items: center; width: 100%; margin-bottom: 20px; box-sizing: border-box; padding: 0 4px;">
+    <div class="sort-container">
+      <span class="sort-label">並び替え</span>
+      <select id="sortSelect" class="sort-select" onchange="renderSongs()">
+        <option value="date-desc">投稿日が新しい順</option>
+        <option value="date-asc">投稿日が古い順</option>
+        <option value="title-asc">楽曲名順</option>
+        <option value="artist-asc">アーティスト順</option>
+        <option value="category-asc">カテゴリー順</option>
+        <option value="custom">カスタム / 選択順</option>
+      </select>
+    </div>
   </div>
 
+</div>
   <div class="song-grid" id="songGrid"></div>
 
 </div>
@@ -1783,8 +1886,8 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 // スマホ版詳細絞り込みアコーディオンの開閉切り替え
 function toggleMobileDetailFilter() {
-  const detailContainer = document.getElementById('mobileDetailSubcategories');
-  const toggleBtn = document.getElementById('mobileDetailToggleText');
+  const detailContainer = document.getElementById('subFilterContainer');
+  const toggleBtn = document.getElementById('mobileDetailToggle');
   if (!detailContainer) return;
   
   const isOpen = detailContainer.classList.toggle('is-open');
@@ -1793,10 +1896,10 @@ function toggleMobileDetailFilter() {
   }
 }
 
-// 既存のカテゴリ選択・フィルター描画処理のスマホ連動補強（件数・判定ロジックは変更なし）
+// スマホ版でのサブカテゴリの非表示制御を無効化（常にすべてのボタンを表示し続ける）
 function updateMobileSubcategoryVisibility() {
-  if (window.innerWidth > 600) return;
-  
+  return;
+}
   const currentCategory = window.selectedCategory || 'すべて';
   const subcategoryButtons = document.querySelectorAll('#subCategoryContainer .filter-btn, .sub-category-btn');
   
@@ -1825,8 +1928,31 @@ function updateMobileSubcategoryVisibility() {
     } else {
       btn.style.display = '';
     }
+    
   });
-}
+  
+const subFilterButtons = document.querySelectorAll('.sub-filter-btn');
+  subFilterButtons.forEach(btn => {
+    // サブフィルターの件数書き換え処理を無効化
+    return;
+  });
+
+  // ▼ 【追加】ファイル内の `<script>` タグの最後の行の直前に追加してください ▼
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth <= 600) {
+      const subcategoryContainer = document.querySelector('.subcategory-container');
+      if (subcategoryContainer && !document.getElementById('mobileDetailToggle')) {
+        const toggleBtn = document.createElement('button');
+        toggleBtn.id = 'mobileDetailToggle';
+        toggleBtn.className = 'mobile-detail-toggle-btn';
+        toggleBtn.innerHTML = '▾ 詳細絞り込み';
+        
+        const detailContent = document.createElement('div');
+        detailContent.id = 'mobileDetailContent';
+        detailContent.className = 'mobile-detail-content';
+      }
+    }
+  });
 </script>
 </body>
  </html>
