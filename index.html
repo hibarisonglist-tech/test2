@@ -1188,13 +1188,29 @@ function loadState() {
       btn.classList.toggle('active', btn.getAttribute('data-sub') === selectedSubFilter);
     });
 
+    // ▼ 【追加】カテゴリのスクロール位置を確実に一番左（すべて）にする
+const categoryContainer = document.getElementById('categoryContainer');
+    if (categoryContainer) {
+      categoryContainer.scrollLeft = 0;
+      setTimeout(() => {
+        categoryContainer.scrollLeft = 0;
+      }, 50);
+    }
+  }
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-tag') === selectedCategory);
+    });
+    document.querySelectorAll('.sub-filter-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-sub') === selectedSubFilter);
+    });
+
     const categoryContainer = document.getElementById('categoryContainer');
     if (categoryContainer) {
       setTimeout(() => {
         categoryContainer.scrollLeft = 0;
       }, 0);
     }
-  }
+
   function getSingerInfo(singer) {
     let name = '';
     let icon = '';
