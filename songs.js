@@ -3591,6 +3591,14 @@ youtube: "",
         tags: ["歌ってみた","Shorts","再生リスト未収録"],
     youtube: "https://youtube.com/shorts/GApQWc0Dt9k?si=44L8SWCxhh8gWTTi",
 },
+{ id:330,
+    title:"アトラクトライト",
+    artist:"*Luna",
+    date: "2023-01-06",
+   singers: ["渡会雲雀","セラフ・ダズルガーデン"],
+  tags: ["Mix","再生リスト未収録"],
+    youtube: "https://youtu.be/SDklLvMpVuw?si=WaDnMpqj2Le4UwzF",
+},
 
 
 
