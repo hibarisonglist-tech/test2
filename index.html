@@ -1640,14 +1640,14 @@ grid.querySelectorAll('.singers-container').forEach(container => {
       const unstackedWidth = icons.length * 28 + Math.max(0, icons.length - 1) * gap;
       const needStack = icons.length >= 7 || unstackedWidth > availableWidth;
 
-      if (needStack) {
+if (needStack) {
         container.classList.add('is-stacked');
-        const badgeWidth = 36;
+        const badgeWidth = 40;
         let visibleCount = icons.length;
 
         while (visibleCount > 0) {
           const iconsWidth = visibleCount === 1 ? 28 : 28 + (visibleCount - 1) * 21;
-          if (iconsWidth + badgeWidth <= availableWidth) {
+          if (iconsWidth + badgeWidth <= availableWidth - 16) {
             break;
           }
           visibleCount--;
