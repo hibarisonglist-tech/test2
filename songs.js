@@ -2455,7 +2455,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未収録"],
     artist: "紗倉ひびき(ファイルーズあい)&街雄鳴造(石川界人)",
     date: "2025-06-30",
     singers: ["渡会雲雀","五十嵐梨花"],
-    tags: ["歌枠","再生リスト未収録"],
+    tags: ["歌枠","コラボ","再生リスト未収録"],
     youtube: "https://www.youtube.com/live/g5Ti7RhlfAk?si=nNpuilufUdMoBiS_&t=4553"
   },
    { id: 215,
