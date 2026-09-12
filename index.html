@@ -1558,9 +1558,9 @@ function loadState() {
       const baseThumb = getYoutubeThumb(song.youtube);
       const finalThumbUrl = (song.customThumbnail && song.customThumbnail.trim() !== "") ? song.customThumbnail : baseThumb;
 
-      const thumbElementHtml = hasVideo 
-        ? `<a href="${song.youtube}" target="_blank" class="thumb-frame" onclick="event.stopPropagation()"><img src="${finalThumbUrl}" alt="${song.title}" loading="lazy"></a>`
-        : `<div class="thumb-frame"><img src="${finalThumbUrl}" alt="${song.title}" loading="lazy"></div>`;
+const thumbElementHtml = hasVideo 
+        ? `<a href="${song.youtube}" target="_blank" class="thumb-frame" onclick="event.stopPropagation()"><img src="${finalThumbUrl}" alt="${song.title}"></a>`
+        : `<div class="thumb-frame"><img src="${finalThumbUrl}" alt="${song.title}"></div>`;
 
       const actionButtonHtml = hasVideo
         ? `<button class="yt-btn" onclick="handlePlayAction('${song.id}', '${song.youtube}')">▶</button>`
