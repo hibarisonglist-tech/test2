@@ -1583,31 +1583,87 @@ function loadState() {
     });
 
 grid.querySelectorAll('.singers-container').forEach(container => {
-      const icons = container.querySelectorAll('.singer-icon');
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const icons = container.querySelectorAll('.singer-icon');
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-      // 初期化
-      container.classList.remove('is-stacked');
-      icons.forEach(icon => {
-        icon.style.display = 'block';
-        icon.style.width = '';
-        icon.style.height = '';
-      });
-      const existingBadge = container.querySelector('.singer-more-badge');
-      if (existingBadge) existingBadge.remove();
+    // 初期化
+    container.classList.remove('is-stacked');
+    icons.forEach(icon => {
+      icon.style.display = 'block';
+      icon.style.width = '';
+      icon.style.height = '';
+    });
+    const existingBadge = container.querySelector('.singer-more-badge');
+    if (existingBadge) existingBadge.remove();
 
-      if (!isMobile) {
-        // ──【PC版：現在の正常な状態を完全維持】──
-        if (icons.length >= 8) {
-          container.classList.add('is-stacked');
-          const hiddenIcons = [];
-          icons.forEach((icon, index) => {
-            if (index >= 6) {
-              icon.style.display = 'none';
-              hiddenIcons.push(icon);
-            }
-          });
+    if (!isMobile) {
+      // ──【PC版：現在の正常な状態を完全維持】──
+      if (icons.length >= 8) {
+        container.classList.add('is-stacked');
+        const hiddenIcons = [];
+        icons.forEach((icon, index) => {
+          if (index >= 6) {
+            icon.style.display = 'none';
+            hiddenIcons.push(icon);
+          }
+        });
 
+        const badge = document.createElement('div');
+        badge.className = 'singer-more-badge';
+        badge.textContent = `+${hiddenIcons.length}`;
+
+        badge.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const modal = document.getElementById('singer-modal');
+          const modalList = document.getElementById('singer-modal-list');
+          if (modal && modalList) {
+            modalList.innerHTML = '';
+            icons.forEach(icon => {
+              const clone = icon.cloneNode(true);
+              clone.style.display = 'block';
+              clone.style.width = '34px';
+              clone.style.height = '34px';
+              clone.style.margin = '0';
+              modalList.appendChild(clone);
+            });
+            modal.style.display = 'flex';
+          }
+        });
+
+        container.appendChild(badge);
+      }
+    } else {
+      // ──【スマホ版：7個以上、または枠を超える場合のみ重ねる・見切れ防止】──
+      const availableWidth = (container.clientWidth > 0 ? container.clientWidth : 280) - 6;
+      
+      const gap = 4;
+      const unstackedWidth = icons.length * 28 + Math.max(0, icons.length - 1) * gap;
+      const needStack = icons.length >= 7 || unstackedWidth > availableWidth;
+
+      if (needStack) {
+        container.classList.add('is-stacked');
+        const badgeWidth = 36;
+        let visibleCount = icons.length;
+
+        while (visibleCount > 0) {
+          const iconsWidth = visibleCount === 1 ? 28 : 28 + (visibleCount - 1) * 21;
+          if (iconsWidth + badgeWidth <= availableWidth) {
+            break;
+          }
+          visibleCount--;
+        }
+
+        if (visibleCount < 1) visibleCount = 1;
+
+        const hiddenIcons = [];
+        icons.forEach((icon, index) => {
+          if (index >= visibleCount) {
+            icon.style.display = 'none';
+            hiddenIcons.push(icon);
+          }
+        });
+
+        if (hiddenIcons.length > 0) {
           const badge = document.createElement('div');
           badge.className = 'singer-more-badge';
           badge.textContent = `+${hiddenIcons.length}`;
@@ -1633,63 +1689,13 @@ grid.querySelectorAll('.singers-container').forEach(container => {
           container.appendChild(badge);
         }
       } else {
-        // ──【スマホ版：必ず枠内に収めるロジック】──
-        container.classList.add('is-stacked');
-        // 幅が取得できない場合のフォールバック値（280px）を確保
-        const availableWidth = container.clientWidth > 0 ? container.clientWidth : 280;
-        
-        const totalWidth = icons.length === 0 ? 0 : 28 + (icons.length - 1) * 21;
-
-        if (totalWidth > availableWidth || icons.length >= 7) {
-          const badgeWidth = 36;
-          let visibleCount = icons.length;
-
-          while (visibleCount > 0) {
-            const iconsWidth = visibleCount === 1 ? 28 : 28 + (visibleCount - 1) * 21;
-            if (iconsWidth + badgeWidth <= availableWidth) {
-              break;
-            }
-            visibleCount--;
-          }
-
-          if (visibleCount < 1) visibleCount = 1;
-
-          const hiddenIcons = [];
-          icons.forEach((icon, index) => {
-            if (index >= visibleCount) {
-              icon.style.display = 'none';
-              hiddenIcons.push(icon);
-            }
-          });
-
-          if (hiddenIcons.length > 0) {
-            const badge = document.createElement('div');
-            badge.className = 'singer-more-badge';
-            badge.textContent = `+${hiddenIcons.length}`;
-
-            badge.addEventListener('click', (e) => {
-              e.stopPropagation();
-              const modal = document.getElementById('singer-modal');
-              const modalList = document.getElementById('singer-modal-list');
-              if (modal && modalList) {
-                modalList.innerHTML = '';
-                icons.forEach(icon => {
-                  const clone = icon.cloneNode(true);
-                  clone.style.display = 'block';
-                  clone.style.width = '34px';
-                  clone.style.height = '34px';
-                  clone.style.margin = '0';
-                  modalList.appendChild(clone);
-                });
-                modal.style.display = 'flex';
-              }
-            });
-
-            container.appendChild(badge);
-          }
-        }
+        container.classList.remove('is-stacked');
+        icons.forEach(icon => {
+          icon.style.display = 'block';
+        });
       }
-    });
+    }
+  });
 
     if (sortableInstance) {
       sortableInstance.destroy();
